@@ -43,7 +43,6 @@ class Orders extends React.Component {
 
   renderTable = () => <Table data={this.state.orders} router={this.props.history}/>;
 
-
   handleFilter(filterType) {
     if(filterType === 'delivered' && this.state.filterByDelivered === false) {
       this.setState({ filterByDelivered: true, filter: 'status=delivered' })
@@ -56,9 +55,7 @@ class Orders extends React.Component {
     } else if (filterType === 'pending') {
       this.setState({ filterByPending: false, filter: '' })
     }
-
   }
-
 
   render() {
     return (
