@@ -25,7 +25,7 @@ class Orders extends React.Component {
       this.getOrders();
     }
 
-    if(prevState.filter != '' && this.state.filter === '') {
+    if(prevState.filter !== '' && this.state.filter === '') {
       this.getOrders();
     }
   }
@@ -65,13 +65,23 @@ class Orders extends React.Component {
       <div className="container">
         <FormGroup check>
          <Label check>
-          <Input type="checkbox" value={this.state.filterByPending} onChange={() => this.handleFilter('pending')} />
+          <Input
+            type="checkbox"
+            value={this.state.filterByPending}
+            onChange={() => this.handleFilter('pending')}
+            disabled={this.state.filterByDelivered}
+            />
            Filter by pending
          </Label>
        </FormGroup>
        <FormGroup check>
         <Label check>
-          <Input type="checkbox" value={this.state.filterByDelivered} onChange={() => this.handleFilter('delivered')} />
+          <Input
+            type="checkbox"
+            value={this.state.filterByDelivered}
+            onChange={() => this.handleFilter('delivered')}
+            disabled={this.state.filterByPending}
+            />
           Filter by delivered
         </Label>
       </FormGroup>
