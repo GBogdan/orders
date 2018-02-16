@@ -49,7 +49,12 @@ class EditOrder extends React.Component {
             </Input>
           </FormGroup>
           <p className="bg-danger">{this.state.error}</p>
-          <Button onClick={this.updateOrder}>Submit</Button>
+          <FormGroup>
+              <Button onClick={this.updateOrder}>Submit</Button>&nbsp;&nbsp;
+              <Button onClick={this.props.history.goBack}>Back</Button>
+          </FormGroup>
+
+
         </Form>
       </div>
     );

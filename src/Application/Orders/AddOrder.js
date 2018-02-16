@@ -31,7 +31,10 @@ class AddOrder extends React.Component {
             <Input value={this.state.description} onChange={this.updateDescription}/>
           </FormGroup>
           <p className="bg-danger">{this.state.error}</p>
-          <Button onClick={this.createOrder}>Submit</Button>
+          <FormGroup>
+            <Button onClick={this.createOrder}>Submit</Button>&nbsp;&nbsp;
+            <Button onClick={this.props.history.goBack}>Back</Button>
+          </FormGroup>
         </Form>
       </div>
     );
