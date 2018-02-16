@@ -16,7 +16,8 @@ class Orders extends React.Component {
       selectedOrder: null,
       filter: '',
       filterByDelivered: false,
-      filterByPending: false
+      filterByPending: false,
+      runOnce: null
     }
   }
 
@@ -34,9 +35,12 @@ class Orders extends React.Component {
   componentWillMount() {
     const getOrders = this.getOrders;
     getOrders();
-    setInterval(function(){
-      getOrders();
-    }, 15000)
+    const runOnce = setInterval(this.getOrders, 15000);
+    this.setState({ runOnce });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.runOnce);
   }
 
   getOrders = () => API.get(`/orders?${this.state.filter}`).then(resp => resp.data ? this.setState({ orders: resp.data.data }) : null);
