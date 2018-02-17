@@ -33,17 +33,16 @@ class Orders extends React.Component {
 
 
   componentWillMount() {
-    const getOrders = this.getOrders;
-    getOrders();
-    const runOnce = setInterval(this.getOrders, 15000);
-    this.setState({ runOnce });
+    this.getOrders();
+    this.setState({ runOnce: setInterval(this.getOrders, 15000) });
   }
 
   componentWillUnmount() {
     clearInterval(this.state.runOnce);
   }
 
-  getOrders = () => API.get(`/orders?${this.state.filter}`).then(resp => resp.data ? this.setState({ orders: resp.data.data }) : null);
+  getOrders = () => API.get(`/orders?${this.state.filter}`)
+                       .then(resp => resp.data ? this.setState({ orders: resp.data.data }) : null);
 
   renderTable = () => <Table data={this.state.orders} router={this.props.history}/>;
 
